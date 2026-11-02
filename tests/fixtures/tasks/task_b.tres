@@ -1,0 +1,29 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/task_data.gd" id="1_task"]
+[ext_resource type="Script" path="res://scripts/data/task_assignment_data.gd" id="2_assignment"]
+[ext_resource type="Script" path="res://scripts/data/effect_data.gd" id="3_effect"]
+
+[sub_resource type="Resource" id="Assignment_b"]
+script = ExtResource("2_assignment")
+active_actor_id = "actor_a"
+assigned_actor_id = "actor_c"
+
+[sub_resource type="Resource" id="Effect_1"]
+script = ExtResource("3_effect")
+kind = &"resource_add"
+resource_id = "res_a"
+amount = 2
+
+[sub_resource type="Resource" id="Effect_2"]
+script = ExtResource("3_effect")
+kind = &"flag_set"
+flag_id = "flag_b"
+flag_value = true
+
+[resource]
+script = ExtResource("1_task")
+id = "task_b"
+duration_units = 3
+assignment = SubResource("Assignment_b")
+completion_effects = Array[ExtResource("3_effect")]([SubResource("Effect_1"), SubResource("Effect_2")])

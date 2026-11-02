@@ -1,0 +1,27 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/initial_state_data.gd" id="1_state"]
+[ext_resource type="Script" path="res://scripts/data/initial_equipment_data.gd" id="2_equipment"]
+
+[sub_resource type="Resource" id="Equipment_a"]
+script = ExtResource("2_equipment")
+id = "equipment_a"
+condition = &"operational"
+
+[sub_resource type="Resource" id="Equipment_b"]
+script = ExtResource("2_equipment")
+id = "equipment_b"
+condition = &"broken"
+disabled_units = 3
+
+[sub_resource type="Resource" id="Equipment_c"]
+script = ExtResource("2_equipment")
+id = "equipment_c"
+condition = &"operational"
+disabled_units = 2
+
+[resource]
+script = ExtResource("1_state")
+id = "initial_state_equipment"
+rng_seed = 1
+starting_equipment = Array[ExtResource("2_equipment")]([SubResource("Equipment_a"), SubResource("Equipment_b"), SubResource("Equipment_c")])

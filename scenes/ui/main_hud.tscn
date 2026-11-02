@@ -1,0 +1,389 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main_hud_view.gd" id="1_view"]
+[ext_resource type="Script" path="res://scripts/ui/mini_game_host.gd" id="2_host"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.08, 0.085, 0.095, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.32, 0.33, 0.36, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inner"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.13, 0.135, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.17, 0.18, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.64, 0.68, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.23, 0.24, 0.27, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.8, 0.84, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.12, 0.13, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.8, 0.84, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_disabled"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.11, 0.115, 0.125, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.31, 0.33, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_focus"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.82, 0.36, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="Theme" id="Theme_hud"]
+default_font_size = 30
+Button/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_disabled_color = Color(0.55, 0.56, 0.58, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.95, 0.95, 0.95, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_disabled")
+Button/styles/focus = SubResource("StyleBoxFlat_focus")
+Button/styles/hover = SubResource("StyleBoxFlat_hover")
+Button/styles/normal = SubResource("StyleBoxFlat_normal")
+Button/styles/pressed = SubResource("StyleBoxFlat_pressed")
+Label/colors/font_color = Color(0.92, 0.92, 0.92, 1)
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MainHud" type="Node"]
+script = ExtResource("1_view")
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="HudLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_hud")
+
+[node name="Margin" type="MarginContainer" parent="HudLayer/Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Layout" type="VBoxContainer" parent="HudLayer/Root/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="TopBar" type="PanelContainer" parent="HudLayer/Root/Margin/Layout"]
+layout_mode = 2
+
+[node name="TopBarContent" type="HBoxContainer" parent="HudLayer/Root/Margin/Layout/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="NightLabel" type="Label" parent="HudLayer/Root/Margin/Layout/TopBar/TopBarContent"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="HudLayer/Root/Margin/Layout/TopBar/TopBarContent"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+
+[node name="ResourcesHeading" type="Label" parent="HudLayer/Root/Margin/Layout/TopBar/TopBarContent"]
+layout_mode = 2
+text = "UI_HUD_RESOURCES"
+
+[node name="ResourceScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/TopBar/TopBarContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_scroll_mode = 0
+
+[node name="ResourceList" type="HBoxContainer" parent="HudLayer/Root/Margin/Layout/TopBar/TopBarContent/ResourceScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Body" type="HBoxContainer" parent="HudLayer/Root/Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="LeftColumn" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="BodiesPanel" type="PanelContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BodiesContent" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/BodiesPanel"]
+layout_mode = 2
+
+[node name="BodiesHeading" type="Label" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/BodiesPanel/BodiesContent"]
+layout_mode = 2
+text = "UI_HUD_BODIES"
+autowrap_mode = 3
+
+[node name="BodyScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/BodiesPanel/BodiesContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="BodyList" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/BodiesPanel/BodiesContent/BodyScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EquipmentPanel" type="PanelContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EquipmentContent" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel"]
+layout_mode = 2
+
+[node name="EquipmentHeading" type="Label" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel/EquipmentContent"]
+layout_mode = 2
+text = "UI_HUD_EQUIPMENT"
+autowrap_mode = 3
+
+[node name="EquipmentScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel/EquipmentContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="EquipmentList" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel/EquipmentContent/EquipmentScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RepairHeading" type="Label" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel/EquipmentContent"]
+layout_mode = 2
+text = "UI_HUD_REPAIR"
+autowrap_mode = 3
+
+[node name="RepairScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel/EquipmentContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RepairList" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/LeftColumn/EquipmentPanel/EquipmentContent/RepairScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterColumn" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+
+[node name="DecisionPanel" type="PanelContainer" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DecisionContent" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn/DecisionPanel"]
+layout_mode = 2
+
+[node name="DecisionLabel" type="Label" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn/DecisionPanel/DecisionContent"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="AdviceBox" type="PanelContainer" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn/DecisionPanel/DecisionContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="AdviceLabel" type="Label" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn/DecisionPanel/DecisionContent/AdviceBox"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="ChoiceScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn/DecisionPanel/DecisionContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ChoiceList" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/CenterColumn/DecisionPanel/DecisionContent/ChoiceScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="RightColumn" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="TasksPanel" type="PanelContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TasksContent" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel"]
+layout_mode = 2
+
+[node name="TasksHeading" type="Label" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel/TasksContent"]
+layout_mode = 2
+text = "UI_HUD_TASKS"
+autowrap_mode = 3
+
+[node name="ActiveTaskScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel/TasksContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="TaskList" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel/TasksContent/ActiveTaskScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AssignmentHeading" type="Label" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel/TasksContent"]
+layout_mode = 2
+text = "UI_HUD_ASSIGN"
+autowrap_mode = 3
+
+[node name="AssignmentScroll" type="ScrollContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel/TasksContent"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="AssignmentList" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/TasksPanel/TasksContent/AssignmentScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ActionsPanel" type="PanelContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn"]
+layout_mode = 2
+
+[node name="ActionsContent" type="VBoxContainer" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/ActionsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WaitButton" type="Button" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/ActionsPanel/ActionsContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "UI_HUD_WAIT"
+autowrap_mode = 3
+
+[node name="NextNightButton" type="Button" parent="HudLayer/Root/Margin/Layout/Body/RightColumn/ActionsPanel/ActionsContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "UI_HUD_NEXT_NIGHT"
+autowrap_mode = 3
+
+[node name="StatusBar" type="PanelContainer" parent="HudLayer/Root/Margin/Layout"]
+layout_mode = 2
+
+[node name="FeedbackLabel" type="Label" parent="HudLayer/Root/Margin/Layout/StatusBar"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="EndingPanel" type="PanelContainer" parent="HudLayer/Root"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndingLabel" type="Label" parent="HudLayer/Root/EndingPanel"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+
+[node name="MiniGameHost" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_host")

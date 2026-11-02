@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://tests/fixtures/fixture_item.gd" id="1_fixture"]
+
+[resource]
+script = ExtResource("1_fixture")
+id = "item_a"

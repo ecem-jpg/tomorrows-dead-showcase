@@ -1,0 +1,64 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/advice_data.gd" id="1_advice"]
+[ext_resource type="Script" path="res://scripts/data/advice_context_data.gd" id="2_context"]
+[ext_resource type="Script" path="res://scripts/data/advice_variant_data.gd" id="3_variant"]
+[ext_resource type="Script" path="res://scripts/data/condition_data.gd" id="4_condition"]
+
+[sub_resource type="Resource" id="Context_a"]
+script = ExtResource("2_context")
+advisor_actor_id = "actor_b"
+recipient_actor_id = "actor_a"
+decision_id = "decision_a"
+
+[sub_resource type="Resource" id="Presentation_1"]
+script = ExtResource("4_condition")
+kind = &"trust"
+source_actor_id = "actor_b"
+target_actor_id = "actor_a"
+comparison = &"ge"
+value = 20
+
+[sub_resource type="Resource" id="Condition_a_1"]
+script = ExtResource("4_condition")
+kind = &"flag"
+flag_id = "information_a"
+flag_value = true
+
+[sub_resource type="Resource" id="Condition_a_2"]
+script = ExtResource("4_condition")
+kind = &"flag"
+flag_id = "information_b"
+flag_value = true
+
+[sub_resource type="Resource" id="Condition_b_1"]
+script = ExtResource("4_condition")
+kind = &"flag"
+flag_id = "information_a"
+flag_value = true
+
+[sub_resource type="Resource" id="Variant_a"]
+script = ExtResource("3_variant")
+id = "variant_a"
+accuracy = &"correct"
+conditions = Array[ExtResource("4_condition")]([SubResource("Condition_a_1"), SubResource("Condition_a_2")])
+recommended_choice_id = "choice_a"
+
+[sub_resource type="Resource" id="Variant_b"]
+script = ExtResource("3_variant")
+id = "variant_b"
+accuracy = &"incomplete"
+conditions = Array[ExtResource("4_condition")]([SubResource("Condition_b_1")])
+
+[sub_resource type="Resource" id="Variant_c"]
+script = ExtResource("3_variant")
+id = "variant_c"
+accuracy = &"incorrect"
+recommended_choice_id = "choice_b"
+
+[resource]
+script = ExtResource("1_advice")
+id = "advice_a"
+context = SubResource("Context_a")
+presentation_conditions = Array[ExtResource("4_condition")]([SubResource("Presentation_1")])
+variants = Array[ExtResource("3_variant")]([SubResource("Variant_a"), SubResource("Variant_b"), SubResource("Variant_c")])

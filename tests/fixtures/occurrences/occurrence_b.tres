@@ -1,0 +1,22 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/occurrence_data.gd" id="1_occurrence"]
+[ext_resource type="Script" path="res://scripts/data/condition_data.gd" id="2_condition"]
+
+[sub_resource type="Resource" id="Condition_1"]
+script = ExtResource("2_condition")
+kind = &"occurrence"
+occurrence_id = "occurrence_a"
+occurrence_status = &"death_prevented"
+
+[sub_resource type="Resource" id="Condition_2"]
+script = ExtResource("2_condition")
+kind = &"flag"
+flag_id = "condition_a"
+
+[resource]
+script = ExtResource("1_occurrence")
+id = "occurrence_b"
+subject_id = "subject_a"
+night = 2
+arrival_conditions = Array[ExtResource("2_condition")]([SubResource("Condition_1"), SubResource("Condition_2")])

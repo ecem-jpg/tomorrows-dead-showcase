@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/time_rules_data.gd" id="1_rules"]
+
+[resource]
+script = ExtResource("1_rules")
+id = "time_rules_a"
+night_count = 2
+night_length_units = 10
+action_costs = Dictionary[StringName, int]({
+&"action_a": 2,
+&"action_b": 0
+})

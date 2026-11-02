@@ -1,0 +1,32 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/task_data.gd" id="1_task"]
+[ext_resource type="Script" path="res://scripts/data/task_assignment_data.gd" id="2_assignment"]
+[ext_resource type="Script" path="res://scripts/data/condition_data.gd" id="3_condition"]
+
+[sub_resource type="Resource" id="Condition_1"]
+script = ExtResource("3_condition")
+kind = &"trust"
+source_actor_id = "actor_b"
+target_actor_id = "actor_a"
+comparison = &"ge"
+value = 20
+
+[sub_resource type="Resource" id="Condition_2"]
+script = ExtResource("3_condition")
+kind = &"flag"
+flag_id = "flag_a"
+flag_value = true
+
+[sub_resource type="Resource" id="Assignment_a"]
+script = ExtResource("2_assignment")
+active_actor_id = "actor_a"
+assigned_actor_id = "actor_b"
+action_id = "action_a"
+acceptance_conditions = Array[ExtResource("3_condition")]([SubResource("Condition_1"), SubResource("Condition_2")])
+
+[resource]
+script = ExtResource("1_task")
+id = "task_a"
+duration_units = 4
+assignment = SubResource("Assignment_a")

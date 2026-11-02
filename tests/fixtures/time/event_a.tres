@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/scheduled_event_data.gd" id="1_event"]
+
+[resource]
+script = ExtResource("1_event")
+id = "event_a"
+night = 1
+at_units = 4
+order = 1

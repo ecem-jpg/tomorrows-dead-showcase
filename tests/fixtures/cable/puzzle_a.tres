@@ -1,0 +1,65 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/cable_puzzle_data.gd" id="1_puzzle"]
+[ext_resource type="Script" path="res://scripts/data/cable_terminal_data.gd" id="2_terminal"]
+[ext_resource type="Script" path="res://scripts/data/cable_connection_data.gd" id="3_connection"]
+[ext_resource type="Script" path="res://scripts/data/cable_puzzle_rules_data.gd" id="4_rules"]
+[ext_resource type="Script" path="res://scripts/data/cable_puzzle_outcome_data.gd" id="5_outcome"]
+[ext_resource type="Script" path="res://scripts/data/condition_data.gd" id="6_condition"]
+[ext_resource type="Script" path="res://scripts/data/effect_data.gd" id="7_effect"]
+
+[sub_resource type="Resource" id="Terminal_a"]
+script = ExtResource("2_terminal")
+id = "terminal_a"
+side = &"left"
+
+[sub_resource type="Resource" id="Terminal_b"]
+script = ExtResource("2_terminal")
+id = "terminal_b"
+side = &"right"
+
+[sub_resource type="Resource" id="Connection_1"]
+script = ExtResource("3_connection")
+terminal_a = "terminal_a"
+terminal_b = "terminal_b"
+
+[sub_resource type="Resource" id="Rules_1"]
+script = ExtResource("4_rules")
+equipment_id = "equipment_a"
+max_submissions = 2
+max_resolutions = 1
+
+[sub_resource type="Resource" id="Condition_1"]
+script = ExtResource("6_condition")
+kind = &"equipment"
+equipment_id = "equipment_a"
+equipment_status = &"broken"
+
+[sub_resource type="Resource" id="Effect_success"]
+script = ExtResource("7_effect")
+kind = &"equipment_repair"
+equipment_id = "equipment_a"
+
+[sub_resource type="Resource" id="Effect_failure"]
+script = ExtResource("7_effect")
+kind = &"equipment_disable"
+amount = 2
+equipment_id = "equipment_a"
+
+[sub_resource type="Resource" id="Outcome_success"]
+script = ExtResource("5_outcome")
+effects = Array[ExtResource("7_effect")]([SubResource("Effect_success")])
+
+[sub_resource type="Resource" id="Outcome_failure"]
+script = ExtResource("5_outcome")
+effects = Array[ExtResource("7_effect")]([SubResource("Effect_failure")])
+
+[resource]
+script = ExtResource("1_puzzle")
+id = "puzzle_a"
+terminals = Array[ExtResource("2_terminal")]([SubResource("Terminal_a"), SubResource("Terminal_b")])
+required_connections = Array[ExtResource("3_connection")]([SubResource("Connection_1")])
+rules = SubResource("Rules_1")
+start_conditions = Array[ExtResource("6_condition")]([SubResource("Condition_1")])
+success = SubResource("Outcome_success")
+failure = SubResource("Outcome_failure")

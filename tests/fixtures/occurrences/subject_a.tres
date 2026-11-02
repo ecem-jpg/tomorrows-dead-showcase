@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/subject_data.gd" id="1_subject"]
+
+[resource]
+script = ExtResource("1_subject")
+id = "subject_a"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/initial_state_data.gd" id="1_setup"]
+
+[resource]
+script = ExtResource("1_setup")
+id = "state_setup_a"
+starting_resources = Dictionary[StringName, int]({
+&"res_a": 3,
+&"res_b": 0
+})
+starting_flags = PackedStringArray("flag_a")
+rng_seed = 12345

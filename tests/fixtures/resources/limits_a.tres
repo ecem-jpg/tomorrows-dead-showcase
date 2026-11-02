@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/resource_limits_data.gd" id="1_limits"]
+
+[resource]
+script = ExtResource("1_limits")
+id = "limits_a"
+min_values = Dictionary[StringName, int]({
+&"res_a": 0,
+&"res_b": 0
+})
+max_values = Dictionary[StringName, int]({
+&"res_a": 10
+})

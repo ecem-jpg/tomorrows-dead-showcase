@@ -1,0 +1,16 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/ending_data.gd" id="1_ending"]
+[ext_resource type="Script" path="res://scripts/data/condition_data.gd" id="2_condition"]
+
+[sub_resource type="Resource" id="Condition_1"]
+script = ExtResource("2_condition")
+kind = &"flag"
+flag_id = "flag_a"
+flag_value = true
+
+[resource]
+script = ExtResource("1_ending")
+id = "ending_a"
+priority = 1
+conditions = Array[ExtResource("2_condition")]([SubResource("Condition_1")])
