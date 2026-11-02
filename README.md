@@ -4,6 +4,12 @@ Tomorrow's Dead is a systems-driven narrative game prototype built with **Godot 
 
 > **Status:** Work in progress. The core systems and HUD foundation are implemented; production session bootstrap and final narrative content are still under development.
 
+## Keyboard puzzle preview
+
+![Keyboard focus moves between terminals, connects A to B and C to D, then checks both pairs.](docs/media/cable-keyboard.gif)
+
+Captured in Godot 4.7.2 using the cable puzzle scene and its standard test session. Arrow keys move focus, Enter or Space connects a pair, and the final Enter checks the wiring. The feedback changes to `UI_CABLE_SOLVED`. This clip shows the isolated mini-game. [Keyboard interaction test](tests/unit/test_cable_puzzle_view_accessibility.gd)
+
 ## Highlights
 
 - Deterministic game state and time progression
